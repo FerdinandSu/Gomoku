@@ -1,0 +1,47 @@
+<app-layout>
+  <div class="card my-5 shadow">
+    <div class="card-header text-center">
+      <h1>五子棋小游戏</h1>
+    </div>
+    <div class="card-body text-center container">
+      <div class="row text-center">
+        <h3>{{system.me?.name}}</h3>
+        <button class="btn nav-link" data-target="#change-name-dialog" data-toggle="modal">
+          <i class="fas fa-edit"></i>
+        </button>
+      </div>
+      <br>
+      <div class="row text-center">
+        <h2>在线玩家</h2>
+      </div>
+      <div class="row text-center">
+        <ul class="list-unstyled col">
+          <li *ngFor="let player of system.players, let i = index" class="media bg-gray m-1">
+            <i [class]="system.getAvatar(i)"></i>
+            <div class="media-body container m-1 clearfix">
+
+              <h5 class="float-left m-1">{{player.name}}
+                <span *ngIf="!player.inGame" class="badge badge-pill badge-success">在线</span>
+                <span *ngIf="player.inGame" class="badge badge-pill badge-warning">游戏中</span></h5>
+              <div class="float-right m-1">
+                <button *ngIf="!player.inGame && !system.isMe(player)" class="btn  btn-primary float-right"
+                        (click)="system.invite(player)">
+                  邀请对战
+                </button>
+              </div>
+
+
+            </div>
+          </li>
+        </ul>
+      </div>
+
+
+    </div>
+  </div>
+</app-layout>
+<app-edit-string-dialog [DefaultValue]="system.me?.name" ValueTypeName="用户名" (ValueSubmitted)="system.changeName($event)"
+                        ComponentId="change-name-dialog"></app-edit-string-dialog>
+<app-confirm-dialog [expression]="'要接受'+system.inviter?.name+'的游戏邀请吗？'" target="游戏邀请"
+                    (confirmed)="system.accept()" (canceled)="system.deny()"
+                    cid="accept-invitation-dialog"></app-confirm-dialog>

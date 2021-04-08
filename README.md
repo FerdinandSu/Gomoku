@@ -1,27 +1,53 @@
-# GoBang
+# Gomoku
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
+五子棋小游戏，分布式系统课设。
 
-## Development server
+前端：angular+bootstrap+socket.io
+后端：node+express+typescript+socket.io
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Setup & Run
 
-## Code scaffolding
+### server
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+cd server
+yarn install
+yarn run prod
+```
 
-## Build
+### client
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```bash
+cd client
+yarn install
+yarn run ng serve
+```
 
-## Running unit tests
+## WebSocket Apis
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### ToServer
 
-## Running end-to-end tests
+- changeName(string):更名
+- invite(Player):邀请参与游戏
+- createGame(Player):建立游戏
+- deny(Player):拒绝游戏
+- shutdown():退出游戏
+- win():赢得游戏
+- setPiece(Point):落子
+- ready(bool):准备
+- message(string):战场通讯
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### FromServer
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- setPlayer(Player):设定默认用户名
+- updatePlayers(Player[]):更新用户名单
+- invite(Player):邀请参与游戏
+- createGame(Player)
+- exception(string):错误通知
+- setPiece(Point):落子
+- deny(Player):拒绝游戏
+- shutdown():退出游戏
+- defeat():失败
+- ready(bool):准备
+- start(Piece):开始
+- message(string):战场通讯

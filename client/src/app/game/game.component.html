@@ -1,0 +1,39 @@
+<app-layout>
+  <div class="card my-5 shadow">
+    <div class="card-header text-center">
+      <h1>五子棋小游戏<button class="btn btn-danger float-right" data-toggle="modal" data-target="#confirm-exit-dialog">离开</button></h1>
+
+    </div>
+    <div class="card-body text-center ">
+      <div class="text-center">
+        <h3>{{system.me?.name}} {{game.myScore}} : {{game.opsScore}} {{game.oppositePlayer?.name}}</h3>
+      </div>
+      <br>
+
+      <app-board *ngIf="game.started"></app-board>
+      <div *ngIf="!game.started" class="container">
+        <div class="text-center">
+          <h5>{{game.oppositePlayer?.name}}{{game.remoteReady ? '已' : '未'}}准备</h5>
+          <button class="btn" [class.btn-success]="!game.isReady"
+                  [class.btn-danger]="game.isReady"
+                  (click)="game.ready()">
+            {{game.isReady ? '取消' : '准备'}}
+          </button>
+        </div>
+
+      </div>
+
+
+    </div>
+    <div class="card-footer text-center">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="发送消息..." [(ngModel)]="msgBuf">
+        <div class="input-group-append">
+          <button class="btn btn-outline-success" (click)="game.sendMessage(msgBuf);msgBuf=''">发送</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-layout>
+<app-confirm-dialog cid="confirm-exit-dialog" expression="确认要离开游戏吗？" target="离开"
+(confirmed)="game.shutdown()"></app-confirm-dialog>
