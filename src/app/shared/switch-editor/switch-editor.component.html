@@ -1,0 +1,8 @@
+<!--suppress ALL -->
+<select id="{{cid}}" class="custom-select"
+        [(ngModel)]="valueRaw"
+        (change)="valueChange.emit(valueRaw==='是')">
+  <option *ngFor="let ci of selections" [ngValue]="ci">
+    {{ci}}
+  </option>
+</select>

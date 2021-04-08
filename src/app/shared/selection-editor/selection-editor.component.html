@@ -1,0 +1,8 @@
+<!--suppress ALL -->
+<select id="{{cid}}" class="custom-select"
+        [(ngModel)]="value"
+        (change)="valueChange.emit(value);">
+  <option *ngFor="let ci of selections" [ngValue]="ci">
+    {{ci}}
+  </option>
+</select>

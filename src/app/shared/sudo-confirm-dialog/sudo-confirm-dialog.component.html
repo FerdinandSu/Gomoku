@@ -1,0 +1,38 @@
+<!--suppress ALL -->
+<div class="modal fade" [id]="cid" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">确认{{target}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="form-group">
+            {{expression}}
+            <br>
+            此过程不可逆，您确定要这样做吗？请输入密码以确认权限。
+          </div>
+<!--          <div class="form-group">
+            <label [for]="cid+'-sudo-un'">管理员用户名</label>
+            <input class="form-control" type="text" [(ngModel)]="username">
+
+          </div>-->
+          <div class="form-group">
+            <label [for]="cid+'-sudo-pwd'">密码</label>
+            <input class="form-control" type="password" [(ngModel)]="password">
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-warning"  (click)="confirm()">确认</button>
+      </div>
+    </div>
+  </div>
+</div>

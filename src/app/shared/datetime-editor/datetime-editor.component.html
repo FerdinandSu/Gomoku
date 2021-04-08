@@ -1,0 +1,12 @@
+<!--suppress ALL -->
+<div class="row m-1 d-flex input-group">
+  <input class="form-control border-dark" [id]="cid"
+         name="date" id="select-date" [(ngModel)]="value" ngbDatepicker #d="ngbDatepicker"
+         (ngModelChange)="valueChange.emit(value)">
+
+  <div class="input-group-append">
+    <button class="btn btn-outline-dark" (click)="d.toggle()" type="button">
+      <i class="fas fa-ellipsis-v"></i>
+    </button>
+  </div>
+</div>

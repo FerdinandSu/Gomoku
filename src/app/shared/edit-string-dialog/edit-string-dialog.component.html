@@ -1,0 +1,30 @@
+<div class="modal fade" [id]="ComponentId" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">编辑{{ValueTypeName}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="form-group">
+            <label for="location" class="col-form-label">
+              <i class="fas fa-edit"></i>
+              新{{ValueTypeName}}:
+            </label>
+            <input type="text" class="form-control" id="location" [(ngModel)]="DefaultValue">
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="ValueSubmitted.emit(DefaultValue)">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
